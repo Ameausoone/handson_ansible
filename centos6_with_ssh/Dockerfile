@@ -1,6 +1,6 @@
 FROM centos:6.8
 
-RUN yum install -y openssh-server
+RUN yum install -y openssh-server && yum clean all -y
 RUN mkdir /var/run/sshd
 RUN echo "root" | passwd --stdin root
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -15,8 +15,6 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 RUN /usr/bin/ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
 
 RUN sed -i '/nodocs/d' /etc/yum.conf
-
-RUN yum makecache
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
