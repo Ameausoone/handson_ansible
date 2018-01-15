@@ -159,17 +159,6 @@ backend
 * Ex : Redémarrer httpd sur mes serveurs web
 * Ex : Installer un package sur mes bdd
 
-// === Commandes Ad-hoc | Exemples
-//
-// [source,shell-session]
-// ----
-// # ansible all -m ping
-// # ansible all -m setup
-// # ansible webservers -m service -a "name=httpd state=restarted“
-// # ansible asservers -m yum -a "name= java-1.8.0-openjdk state=present“
-// # ansible dbserver3 -m shell -a "echo $TERM"
-// ----
-
 == Module Ping
 
 * Vérifier la connexion sur les serveurs
@@ -753,6 +742,11 @@ export JAVA_OPTS="{{ java_opts }}"
 {% endif %}
 ----
 
+[NOTE.speaker]
+--
+!!!!!! HandsOn 2 !!!!!!
+--
+
 == Playbook | Problèmes
 
 [%step]
@@ -843,6 +837,11 @@ playbooks/
     - ansible-role-apache
 ----
 
+[NOTE.speaker]
+--
+!!!!!! HandsOn 3 !!!!!!
+--
+
 == Ansible-galaxy
 
 image::ansible-galaxy-home.png[]
@@ -852,6 +851,11 @@ image::ansible-galaxy-home.png[]
 Ansible galaxy est le site pour trouver, réutiliser ou partager des rôles Ansible.
 
 https://galaxy.ansible.com/
+
+[NOTE.speaker]
+--
+!!!!!! HandsOn 4 !!!!!!
+--
 
 == Ansible | Jenkins
 
