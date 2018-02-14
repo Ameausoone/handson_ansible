@@ -4,11 +4,12 @@ services:
   - docker
 
 before_install:
-  - mkdir -p output
-  - docker pull ameausoone/docker-image-asciidoctor-reveal.js
+  - mkdir -p docs
+  - docker pull asciidoctor/docker-asciidoctor:latest
 
 script:
-  - docker run -v $TRAVIS_BUILD_DIR/slides/:/opt/slides/ -v $TRAVIS_BUILD_DIR/output:/opt/output/ --name asciidoc-to-revealjs-prez ameausoone/docker-image-asciidoctor-reveal.js make
+  - docker run -v $TRAVIS_BUILD_DIR/:/documents/ --name asciidoc-to-revealjs-prez asciidoctor/docker-asciidoctor:latest asciidoctor-revealjs -D /documents/docs -o slides.html /documents/slides.adoc
+  - docker run -v $TRAVIS_BUILD_DIR/:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor:latest asciidoctor-pdf -D /documents/docs -o slides.pdf /documents/slides.adoc
 
 after_error:
   - docker logs asciidoc-to-revealjs-prez
@@ -17,7 +18,7 @@ after_failure:
   - docker logs asciidoc-to-revealjs-prez
 
 after_success:
-  - cd output ; mv README.html index.html ; cp -R ../images images
+  - cd docs ; mv slides.html index.html ; cp -R ../images images
   - git init
   - git config user.name "${GH_USER_NAME}"
   - git config user.email "{GH_USER_EMAIL}"
