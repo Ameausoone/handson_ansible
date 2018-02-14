@@ -1,1 +1,21 @@
-image:https://travis-ci.org/Ameausoone/handson_ansible.svg?branch=master["Build Status", link="https://travis-ci.org/Ameausoone/handson_ansible"]
+= Sfeir template slides
+
+Prez ansible
+
+== Slides
+
+Slides are available and automatically publish on https://ameausoone.github.io/handson_ansible/[GH pages]
+
+== How to generate the slides ?
+
+[source,bash]
+----
+make generate # Generate HTML slides in ./docs/index.html
+make pdf # Generate PDF slides from HTML slides in ./docs/slides.pdf
+----
+
+You can then find the generated content in ./docs/
+
+
+
+CI status : image:https://travis-ci.org/Ameausoone/handson_ansible.svg?branch=master["Build Status", link="https://travis-ci.org/Ameausoone/handson_ansible"]

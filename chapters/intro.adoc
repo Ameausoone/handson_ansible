@@ -1,0 +1,74 @@
+
+= Bonjour
+image::{imagedir}/sfeir_fond_bleu.png[background, size=cover]
+* {author}
+* Développeur
+
+== Sfeir
+image::{imagedir}/sfeir-commercial-design-fonds_hexagones.jpg[background, size=cover]
+
+== Problème
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+== Comment ?
+image::{imagedir}/server-rack.jpg[background, size=cover]
+
+== Comment gérer tous ces serveurs aujourd'hui ?
+
+[NOTE.speaker]
+--
+Comment gérer tous ces serveurs aujourd'hui ?
+--
+
+== Comment ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=contain]
+
+[%step]
+* Accélérer les déploiements ?
+* Fiabiliser les environnements ?
+* Faciliter la gestion des serveurs ?
+* Automatiser les tâches récurrentes ?
+
+== Let's code this !
+image::{imagedir}/letscodethis.jpg[background, size=cover]
+
+== Scripts shell ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+[%step]
+* Pas "Idempotent"
+* Pas robuste
+* Maintenabilité ?
+
+== La Solution ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+== Provisionning
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+image::{imagedir}/logo-chef.png[Chef,200,200,float="left",align="center"]
+image::{imagedir}/logo-puppet.png[Puppet,200,200,float="left",align="center"]
+image::{imagedir}/logo-salt.png[Salt,200,200,float="right",align="center"]
+image::{imagedir}/logo-ansible.png[Ansible,200,200,float="right",align="center"]
+
+== Pourquoi Ansible ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+[%step]
+* Pas d’agents, pas de master
+* Configuration en YAML
+* S’installe avec un simple package
+* Très simple à apprendre et à utiliser
+* Des centaines de modules (+ de 600 aujourd'hui)
+
+== Historique
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+* Créé en 2012 par link:https://www.linkedin.com/in/michaeldehaan/[Michael DeHaan] pour créer un outil simple par rapport aux concurrents Chef et Puppet
+* Racheté par RedHat en 2015
+* Actuellement en version Ansible v2.4
+
+== Trends
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+image::{imagedir}/google-trends-chef-puppet-ansible.png[]

@@ -1,103 +1,16 @@
-= Automatiser avec  Ansible
-Antoine Méausoone <meausoone.a@sfeir.com>
-:twitter: https://twitter.com/AMeausoone
-:revealjs_history: true
-:imagesdir: images
-:icons: font
-:source-highlighter: highlightjs
 
-// ME
-// Comment gérer une infra ? Shell  ?
-// provissioning , pka Ansible ?
-// Ansible : historique, comment ça marche ?, installation
-// Inventory : comment ça marche
-// ad hoc command : ping, setup, service, test si un package est installé.
-// handson 1 : ansible ad hoc
-// playbook : comment écrire un playbook, modules
-// handson 2 : compléter un playbook
-// playbook : les roles, concept organisation
-// handson 3 : compléter un role
-// ansible-galaxy
-// handson 4 : un role avec galaxy
-// ansible / Jenkins
-// ansible / Docker
-//
+= Comment ça marche ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
-== /Me
-
-*  {author}
-*  2 enfants
-*  Ingénieur logiciel, Ex-(Atos) Worldline, Ex-Capgemini, Sfeir \o/
-*  Dev, Ops
-
-== Problème
-
-// [%notitle]
-== Comment gérer tous ces serveurs aujourd'hui ?
-
-image::server-rack.jpg[background, size=cover]
-
-[NOTE.speaker]
---
-Comment gérer tous ces serveurs aujourd'hui ?
---
-
-== Comment ?
-
-[%step]
-* Accélérer les déploiements ?
-* Fiabiliser les environnements ?
-* Faciliter la gestion des serveurs ?
-* Automatiser les tâches récurrentes ?
-
-== Let's code this !
-
-image::letscodethis.jpg[background, size=cover]
-
-== Scripts shell ?
-
-[%step]
-* Pas "Idempotent"
-* Pas robuste
-* Maintenabilité ?
-
-== La Solution ?
-
-== Provisionning
-
-image::logo-chef.png[Chef,200,200,float="left",align="center"]
-image::logo-puppet.png[Puppet,200,200,float="left",align="center"]
-image::logo-salt.png[Salt,200,200,float="right",align="center"]
-image::logo-ansible.png[Ansible,200,200,float="right",align="center"]
-
-== Pourquoi Ansible ?
-
-[%step]
-* Pas d’agents, pas de master
-* Configuration en YAML
-* S’installe avec un simple package
-* Très simple à apprendre et à utiliser
-* Des centaines de modules (+ de 600 aujourd'hui)
-
-== Historique
-
-* Créé en 2012 par link:https://www.linkedin.com/in/michaeldehaan/[Michael DeHaan] pour créer un outil simple par rapport aux concurrents Chef et Puppet
-* Racheté par RedHat en 2015
-
-// [background-iframe="trends-google.html"]
-== Trends
-
-image::google-trends-chef-puppet-ansible.png[]
-
-== Comment ça marche ?
-
-image::shema-ssh-ansible.png[ssh]
+image::{imagedir}/shema-ssh-ansible.png[ssh]
 
 == Installation
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 sudo pip install *ansible*
 
 == Commandes principales
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * *ansible* <host-pattern> [options]
@@ -105,6 +18,7 @@ sudo pip install *ansible*
 * *ansible-playbook* playbook.yml [options]
 
 == Commandes secondaires
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * *ansible-galaxy* [delete|import|info|init|install|list|login|remove|search|setup] [--help] [options]
@@ -112,6 +26,7 @@ sudo pip install *ansible*
 * *ansible-vault* [create|decrypt|edit|encrypt|rekey|view] [--help] [options] vaultfile.yml
 
 == Concepts
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * *Inventory*
@@ -120,6 +35,7 @@ sudo pip install *ansible*
 * *Roles*
 
 == Inventory
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * Inventaire des machines gérer par Ansible
@@ -130,6 +46,7 @@ sudo pip install *ansible*
 * Inventaire dynamique : AWS, DigitalOcean, ou un script custom
 
 == Inventory | Exemples
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [source,Ini]
 ----
@@ -150,9 +67,12 @@ backend
 ----
 
 == Commandes Ad-hoc
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 == Commandes Ad-hoc
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
+[%step]
 * Une simple ligne de commande
 * Pour exécuter une tâche | module
 * En parallèle
@@ -160,12 +80,14 @@ backend
 * Ex : Installer un package sur mes bdd
 
 == Module Ping
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 * Vérifier la connexion sur les serveurs
 * On peut spécifier "all", un groupe ou un pattern de machines
 * s'exécute en parallèle
 
 == Commandes Ad-hoc | Module Ping
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 .ansible all -m ping
 
@@ -186,12 +108,14 @@ zabbixserver | SUCCESS => {
 ----
 
 == Module Setup
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 * Collecte des informations sur le système
 * Ip, nom, OS, montage, disques
 * Peut-être utilisé dans des conditions (playbook)
 
 == Commandes Ad-hoc | Module Setup
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 .ansible front -m setup
 
@@ -505,11 +429,13 @@ front | SUCCESS => {
 ----
 
 == Module service
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 * Contrôle les services : stop, start, restart, enabled
 * Gère : BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
 
 == Commandes Ad-hoc | Module service
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 .ansible front -m service -a "name=httpd state=started enabled=yes"
 
@@ -524,6 +450,7 @@ front | SUCCESS => {
 ----
 
 == Autres modules pratiques
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * *user* : gestion des utilisateurs (et groupes) systèmes
@@ -542,6 +469,7 @@ front | SUCCESS => {
 --
 
 == Autres modules pratiques (2)
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
 * *authorized_key*
@@ -554,338 +482,17 @@ front | SUCCESS => {
 * *mysql_db*, *mysql_user*, (*postgresql_[db|user])
 * *git*
 --
+
+== Clustering Modules
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+[%step]
+* *consul*
+* *kubernetes*
+* *oc*
+
 
 == Modules | Documentation
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 http://docs.ansible.com/ansible/
-
-[NOTE.speaker]
---
-!!!!!! HandsOn 1 !!!!!!
---
-
-== Playbooks
-
-[NOTE.speaker]
---
-OK avec les commandes ad-hoc, on a fait des actions très pratique sur les machines, en parallèle,
-Mais on exécute qu'une commande à la fois, pas de variabilisation, pas d'orchestration.
---
-
-== Ok can we code now ?
-
-[%step]
-* Language Ansible pour la configuration, l'orchestration et le déploiement
-* Programmation déclarative
-* Yaml !
-* On fait quoi sur quelles machines ?
-
-[NOTE.speaker]
---
-* Language Ansible pour la configuration, l'orchestration et le déploiement
-* Programmation déclarative
-* Yaml !
-* On fait quoi sur quelles machines ?
---
-
-== Playbooks
-
-[source]
-----
----
-- hosts: webservers
-  vars:
-    http_port: 80
-    max_clients: 200
-  remote_user: root
-  tasks:
-  - name: ensure apache is at the latest version
-    yum: name=httpd state=latest
-  - name: write the apache config file
-    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
-    notify:
-    - restart apache
-  - name: ensure apache is running (and enable it at boot)
-    service: name=httpd state=started enabled=yes
-  handlers:
-    - name: restart apache
-      service: name=httpd state=restarted
-----
-
-[NOTE.speaker]
---
-* On installe la dernière version du package httpd
-* On va copier le template du fichier de conf httpd.conf
-** On notifie le handler qu'il est nécessaire de redémarrer httpd
-* On active le service httpd et on démarre si ça n'est pas déjà fait
-* Si nécessaire on redémarre le service
---
-
-== Playbooks | Exécution
-
-ansible-playbook playbook.yml
-
-== Variables
-
-[source,yaml]
-.vars/main.yml
-----
-httpd_version: 2.3
-----
-
-[source,yaml]
-.tasks/main.yml
-----
-- name: Ensure httpd is installed
-  yum: name= "httpd"
-            state= present
-            version= {{ httpd_version }}
-----
-
-[NOTE.speaker]
---
-* Exemple simple
-* Mais les variables vont nous servir à bien plus de choses, on va voir ça juste après.
---
-
-== Organisation du répertoire playbooks
-
-[source]
-----
-playbooks/
-├── hosts
-├── groups_vars
-│   ├── all
-│   │   └── vars.yml
-│   ├── prod
-│   │   └── vars.yml
-│   ├── dev
-│   │   └── vars.yml
-│   └── qualif
-│       └── vars.yml
-├── host_vars
-│   ├── webserver01
-│   │   └── vars.yml
-│   └── database02
-│       └── vars.yml
-├── site.yml
-├── webservers.yml
-└── database.yml
-----
-
-== Condition
-
-Utilise des variables ou des facts (setup)
-
-[source,yaml]
-.Pour exécuter un module
-----
-- name: Install Apache (Ubuntu)
-  apt: name=apache state=latest
-  when: ansible_os_family == 'Debian'
-
-- name: Install Apache (CentOS)
-  yum: name=httpd state=latest
-  when: ansible_os_family == 'RedHat'
-----
-
-== Condition (2)
-
-[source,yaml]
-.Pour faire un "include"
-----
-- include: tasks/sometasks.yml
-  when: "'reticulating splines' in output"
-----
-
-== Boucle
-
-[source,yaml]
-----
-- name: add several users
-  user:
-    name: "{{ item }}"
-    state: present
-    groups: "wheel"
-  with_items:
-     - testuser1
-     - testuser2
-----
-
-== Boucle avec des objets
-
-[source,yaml]
-----
-- name: add several users
-  user:
-    name: "{{ item.name }}"
-    state: present
-    groups: "{{ item.groups }}"
-  with_items:
-    - { name: 'testuser1', groups: 'wheel' }
-    - { name: 'testuser2', groups: 'root' }
-----
-
-== Templates (Jinja2)
-
-[source]
-----
-# Generated by Ansible for {{ansible_fqdn}}
-{% if step_main_version == 'v7' %}
-export JDK_HOME={{ jdk_home }}
-export JAVA_HOME={{ jdk_home }}
-{% endif %}
-{% if step_jmx_enabled %}
-export JAVA_OPTS="{{ java_opts }} {{ step_jmx_options }}"
-{% else %}
-export JAVA_OPTS="{{ java_opts }}"
-{% endif %}
-----
-
-[NOTE.speaker]
---
-!!!!!! HandsOn 2 !!!!!!
---
-
-== Playbook | Problèmes
-
-[%step]
-* Très pratique mais...
-* Manque de généricité
-* Difficilement réutilisable
-
-[NOTE.speaker]
---
-* Très pratique mais...
-* Manque de généricité
-* Difficilement réutilisable
---
-
-== Roles
-
-[%step]
-* Organiser son playbook
-* Basé sur des conventions (tasks, handlers, vars …)
-* Réutilisable !!
-* Un role => un groupe de machine
-** Ex: rôle « apache_httpd » => serveurs « front »
-
-[NOTE.speaker]
---
-* Organiser son playbook
-* Basé sur des conventions (tasks, handlers, vars …)
-* Réutilisable !!
-* Un role => un groupe de machine
-** Ex: rôle « apache_httpd » => serveurs « front »
---
-
-== Roles | Organisation
-
-[source]
-----
-playbooks/
-├── hosts
-├── group_vars
-├── roles
-│   ├── ansible_role_httpd
-│   │   ├── defaults
-│   │   │   └── main.yaml
-│   │   ├── files
-│   │   │   └── main.yaml
-│   │   ├── handlers
-│   │   │   └── main.yaml
-│   │   ├── templates
-│   │   │   └── main.yaml
-│   │   ├── tasks
-│   │   │   └── main.yaml
-│   │   └── vars
-│   │       └── main.yaml
-│   └── ansible_role_mysql
-│   │   ├── defaults
-│   │   │   └── main.yaml
-│   │   ├── files
-│   │   │   └── main.yaml
-│   │   ├── handlers
-│   │   │   └── main.yaml
-│   │   ├── templates
-│   │   │   └── main.yaml
-│   │   ├── tasks
-│   │   │   └── main.yaml
-│   │   └── vars
-│   │       └── main.yaml
-└── site.yaml
-----
-
-== Roles | Organisation
-
-[%step]
-* *tasks* : Contient les modules à exécuter (point d'entrée du rôle)
-* *handlers* : Contient les modules à "notifier"
-* *vars* : Contient les variables (RedHat / Ubuntu par exemple)
-* *defaults* : Les variables par défaut
-* *templates* : Les fichiers à templatiser
-* *files* : Les fichiers statiques
-* *meta* : Contient les dépendances du rôle
-
-== Roles | Playbook
-
-[source,yaml]
-----
-- name: Install httpd on webservers
-  hosts: webservers
-  roles:
-    - ansible-role-apache
-----
-
-[NOTE.speaker]
---
-!!!!!! HandsOn 3 !!!!!!
---
-
-== Ansible-galaxy
-
-image::ansible-galaxy-home.png[]
-
-== Ansible-galaxy (2)
-
-Ansible galaxy est le site pour trouver, réutiliser ou partager des rôles Ansible.
-
-https://galaxy.ansible.com/
-
-[NOTE.speaker]
---
-!!!!!! HandsOn 4 !!!!!!
---
-
-== Ansible | Jenkins
-
-* Déclencher un build à partir d’un événement (appel rest, poll scm)
-* Lancer un playbook à partir d’une UI
-* Historiser les exécutions
-* Intégrer un déploiement Ansible dans un pipeline Jenkins
-
-== Jenkins | Configuration d'un job
-
-image::jenkins-deploy-ansible-config.png[]
-
-== Jenkins | Console
-
-image::jenkins-deploy-ansible-console.png[]
-
-== Ansible | Container
-
-* Ansible-container (beta)
-** Contruit des containers docker à partir de playbook Ansible
-** Déployer ces containers dans le cloud
-** Piloter ces containers
-
-== Questions ?
-
-== Crédits
-
-* https://fr.slideshare.net/johnthethird/ansible-presentation-24942953[John Lynch]
-* https://fr.slideshare.net/robertreiz/ansible-40167296[Robert Reiz]
-* https://fr.slideshare.net/schedrov/mold-camp-ansible-is-the-simplest-way-to-automate-no-gifs[Alexander Schedrov]
-* https://fr.slideshare.net/rayedalrashed/ansible-pdf[Rayed Alrashed]
-
-== Merci

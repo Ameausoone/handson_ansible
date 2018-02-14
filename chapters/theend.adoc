@@ -1,0 +1,20 @@
+
+
+= Ansible | Container
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+* Ansible-container (beta)
+** Contruit des containers docker à partir de playbook Ansible
+** Déployer ces containers dans le cloud
+** Piloter ces containers
+
+== Questions ?
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+== Crédits
+image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
+
+* https://fr.slideshare.net/johnthethird/ansible-presentation-24942953[John Lynch]
+* https://fr.slideshare.net/robertreiz/ansible-40167296[Robert Reiz]
+* https://fr.slideshare.net/schedrov/mold-camp-ansible-is-the-simplest-way-to-automate-no-gifs[Alexander Schedrov]
+* https://fr.slideshare.net/rayedalrashed/ansible-pdf[Rayed Alrashed]

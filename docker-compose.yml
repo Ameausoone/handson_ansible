@@ -1,11 +1,8 @@
-version: '2'
+version: "2.1"
+
 services:
-  prez:
-    image: ameausoone/docker-image-asciidoctor-reveal.js:latest
-    ports:
-    - "8000:8000"
+  build-slides:
+    image: asciidoctor/docker-asciidoctor:latest
     volumes:
-    - ./slides/:/opt/slides/
-    - ./output/:/opt/output/
-    environment:
-      INDEX: handsonansible.html
+    - ./:/documents
+    command: asciidoctor-revealjs -D /documents/docs -o slides.html /documents/slides.adoc
