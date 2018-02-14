@@ -13,7 +13,7 @@ sudo pip install *ansible*
 image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 
 [%step]
-* *ansible* <host-pattern> [options]
+* *ansible* <host-pattern> -m <module> -a <module options> [options]
 
 * *ansible-playbook* playbook.yml [options]
 
@@ -489,7 +489,7 @@ image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
 [%step]
 * *consul*
 * *kubernetes*
-* *oc*
+* *oc* OpenShift - New in version 2.4
 
 
 == Modules | Documentation

@@ -77,8 +77,8 @@ httpd_version: 2.3
 ----
 - name: Ensure httpd is installed
   yum: name= "httpd"
-            state= present
-            version= {{ httpd_version }}
+       state= present
+       version= {{ httpd_version }}
 ----
 
 [NOTE.speaker]
@@ -343,5 +343,5 @@ image::{imagedir}/jenkins-deploy-ansible-config.png[]
 
 == Jenkins | Console
 image::{imagedir}/sfeir_fond_big.jpg[background, size=cover]
-s
+
 image::{imagedir}/jenkins-deploy-ansible-console.png[]
